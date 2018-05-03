@@ -1,2 +1,41 @@
-<h1>Posts#index</h1>
-<p>Find me in app/views/posts/index.html.erb</p>
+<div class="container">
+    <div class="row">
+        <div class="col s12 m4">
+            <div class="card">
+                <div class="card-image">
+                    <img src="http://materializecss.com/images/office.jpg" />
+                </div>
+                <div class="card-content">
+                    <div class="card-title"><%= current_user.name %></div>
+                    <p>E-mail : <%= current_user.email %></p>
+                    <p>Post Number : <%= @posts_count %></p>
+
+                    <%= link_to new_post_path do %>
+                        <button class="btn">Create new post</button>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m8">
+            <% @posts.each do |post| %>
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title"><%= post.user.name %></span>
+                        <span><%= post.created_at %></span>
+                        <p class="pre-line"><%= post.content %></p>
+                        <p><%= post.content %></p>
+                    </div>
+
+                    <div class="card-action">
+                        <a href="#">Like</a>
+                        <% if current_user.id == post.user_id %>
+                          <%= link_to "Remove", post_path(post), method: "delete", class:  "right" %>
+                          <%= link_to "Modify", edit_post_path(post), class: "right" %>
+                        <% end %>
+                        <a href="#">Make a comment</a>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>
