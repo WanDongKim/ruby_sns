@@ -18,6 +18,30 @@
             <%= link_to "Remove", post_path(post), method: "delete", class:  "right" %>
             <%= link_to "Modify", edit_post_path(post), class: "right" %>
           <% end %>
-          <a href="#">Make a comment</a>
+
+          <%= form_tag post_comments_path(post) do %>
+            <div class="input-field">
+              <%= text_area_tag :content, nil, class: "materialize-textarea", placeholder: "Please make a comment", required: true %>
+            </div>
+            <div class="input-field">
+              <%= button_tag "Make a comment", class: "btn" %>
+            </div>
+          <% end %>
+
+          <% if post.comments.present? %>
+            <ul class="collection">
+            <% post.comments.each do |comment| %>
+              <li class="collection-item">
+                <span class="title"><%= comment.user.name %></span>
+                <span class="right"><%= comment.created_at %></span>
+                <p class="pre-line"><%= comment.content %></p>
+                <% if comment.user.id == current_user.id %>
+                  <div><%= link_to "remove", post_comment_path(post, comment), method: "delete" %></div>
+                <% end %>
+              </li>
+            <% end %>
+            </ul>
+          <% end %>
+
       </div>
   </div>
