@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.4.4'
 
+gem 'carrierwave'
 gem 'devise', git: 'https://github.com/plataformatec/devise.git'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.0'
@@ -27,8 +28,8 @@ gem 'jquery-rails'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
-gem 'bcrypt', '~> 3.1.7'
-
+# gem 'bcrypt', '~> 3.1.7'
+# gem 'bcrypt', platforms: :ruby
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
