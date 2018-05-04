@@ -9,7 +9,8 @@
                     <div class="card-title"><%= current_user.name %></div>
                     <p>E-mail : <%= current_user.email %></p>
                     <p>Post Number : <%= @posts_count %></p>
-
+                    <p>Followers : <%= current_user.followers.length %></p>
+                    <p>Followings : <%= current_user.followings.length %></p>
                     <%= link_to new_post_path do %>
                         <button class="btn">Create new post</button>
                     <% end %>
